@@ -13,6 +13,10 @@ class Frog extends Rectangle {
     rect(x,y,w,w);
   }
   
+  void terminate(){
+     fill(0,0,0,0);
+  }
+  
   void update() {
     if (attached != null) {
      frog.x += attached.speed; 

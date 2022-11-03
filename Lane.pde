@@ -3,13 +3,30 @@ class Lane extends Rectangle {
   int col;
   int type;
   
+  //This is for the safe rows
   Lane(float index, color c) {
      super(0, index*grid, width, grid);
      type = SAFETY;
      obstacles = new Obstacle[0];
      col = c;
   }
+  
+  //This is for the end zone
+  Lane(float index, int n, int t){
+    super(0, index*grid, width,grid);
+    obstacles = new Obstacle[n];
+    type = t;
+    float offset = 150;
+    for(int i = 0; i < n; i++) {
+       obstacles[i] = new Obstacle(offset * i, index*grid * i, grid + 25, grid, 0); 
+    }
+    if(type == 1){
+     col = color(255,255,0);
+    }
+  }
+  
  //Lane(height, what type, how many obs, width of obs * grid, space between obs, speed of obs) 
+ //This is for the logs and cars
   Lane(float index, int t, int n, int len, float spacing, float speed){
    super(0, index*grid, width, grid);
    obstacles = new Obstacle[n];
@@ -28,10 +45,12 @@ class Lane extends Rectangle {
   
   void check(Frog frog) {
     //checking if avoiding cars
+    scores();
     if(type == CAR) {
        for(Obstacle o : obstacles) {
          if(frog.intersects(o)){
            resetGame();
+           lives--;
          }
        }
        //checking if on log
@@ -46,6 +65,7 @@ class Lane extends Rectangle {
        //if fall off log
        if(!ok){
         resetGame(); 
+        lives--;
        }
      }
   }
