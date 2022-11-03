@@ -6,6 +6,7 @@ int LOG = 2;
 int lives = 3;
 float grid = 50;
 PFont font;
+PImage img;
 
 //If reset game is added, might want to create frog else where at another time
 void resetGame() {
@@ -57,6 +58,7 @@ void setup() {
   resetGame();
   textSize(15);
   font = createFont("font.vlw",30);
+  img = loadImage("Frog.png");
   //number of lanes based on height
   int totalLanes = int(height/grid +1);
   lanes = new Lane[totalLanes];
@@ -103,9 +105,9 @@ void draw() {
   if(lives <= 0){
     gameOver();
   }else{
+    frog.update();
     frog.show();
   }
-  frog.update();
  // scores();
 }
 

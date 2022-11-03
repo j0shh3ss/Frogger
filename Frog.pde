@@ -9,7 +9,7 @@ class Frog extends Rectangle {
   }
 
   void show() {
-    fill(0, 255, 0, 200);
+    image(img,x,y);
     rect(x,y,w,w);
   }
   
