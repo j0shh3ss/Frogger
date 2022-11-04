@@ -9,12 +9,10 @@ class Frog extends Rectangle {
   }
 
   void show() {
-    fill(0, 255, 0, 200);
+    tint(255,126);
+    fill(255);
+    image(img,x,y);
     rect(x,y,w,w);
-  }
-  
-  void terminate(){
-     fill(0,0,0,0);
   }
   
   void update() {
@@ -22,7 +20,9 @@ class Frog extends Rectangle {
      frog.x += attached.speed; 
     }
     frog.x = constrain(x,0,width-w);
-    frog.y = constrain(y, 0,height-w);
+    frog.x = constrain(x,0,width+w);
+    frog.y = constrain(y,0,height-w);
+    frog.y = constrain(y,0,height+w);
   }
   //This is the frog moving
   void move(float xdir, float ydir) {

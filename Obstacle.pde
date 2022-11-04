@@ -1,9 +1,11 @@
 class Obstacle extends Rectangle {
   float speed;
+  float col;
   
-  Obstacle(float x, float y, float w, float h, float s){
+  Obstacle(float x, float y, float w, float h, float s, float c){
     super(x,y,w,h);
     speed = s;
+    col = c;
   }
   
   void update() {
@@ -15,7 +17,15 @@ class Obstacle extends Rectangle {
     }
   }
   void show() {
-   fill(215);
-   rect(x,y,w,h);
+    if(col == 1) {
+      fill(140,0,210);
+    }
+    if(col == 2){
+      fill(95,60,40);
+    }
+    if(col == 3){
+      fill(15,57,28);
+    }
+    rect(x,y,w,h);
   }
 }
