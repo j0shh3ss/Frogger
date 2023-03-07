@@ -31,21 +31,27 @@ void gameOver() {
 //Fix the sizing of the win game hahahahahaha
 void winGame(){
   background(255,255,0);
-  fill(0);
-  textAlign(CENTER,CENTER);
-  text("You win!!!",width/2, height/2);
-  fill(0);
-  text("Click to play again",width/2,height/2+40);
-//  text("Press any key to reset this level",width/2, height/2+40);
-//  fill(0);
-//  text("Or click the mouse to move onto level 2",width/2,height/2+60);
-//  if(keyPressed){
-//      lives = 3;
-//      resetGame();
-//   }
-  if(mousePressed){
-//    level++;
-    resetGame();
+ // boolean key = false;
+ // while(key != true){
+    fill(0);
+    textAlign(CENTER,CENTER);
+    //text("You win!!!",width/2, height/2);
+    //fill(0);
+    //text("Click to play again",width/2,height/2+40);
+    text("Press any key to reset this level",width/2, height/2+40);
+    fill(0);
+    text("Or click the mouse to move onto level 2",width/2,height/2+60);
+    // if(keyPressed){
+    //   lives = 3;
+    //   resetGame();
+    //   key = true;
+    // }
+    if(mousePressed){
+    //  level++;
+      lives = 3;
+      resetGame();
+    //  key = true;
+   // }
   }
 }
 
@@ -56,15 +62,16 @@ void setup() {
   resetGame();
   textSize(20);
   img = loadImage("Frog.png");
+  loadLanesRound1();
+ // loadGame();
   //number of lanes based on height
-  int totalLanes = int(height/grid +1);
-  lanes = new Lane[totalLanes];
-  if(level == 0){
-    loadLanesRound1();
-  }
+  // int totalLanes = int(height/grid +1);
+  // lanes = new Lane[totalLanes];
+  // if(level == 0){
+  //   loadLanesRound1();
+  // }
   // if(level == 1){
   //   loadLanesRound2();
-  // }
 }
 
 void draw() {
@@ -87,7 +94,17 @@ void draw() {
     frog.show();
     frog.update();
   }
+  //loadGame();
  // scores();
+}
+
+void loadGame(){
+  if(level == 0){
+    loadLanesRound1();
+  }
+  if(level == 1){
+    loadLanesRound2();
+  }
 }
 
 void scores(){
@@ -101,6 +118,8 @@ void loadLanesRound1(){
 //LANE(index, color())
 //for win lane
 //Lane(index, number of obstacles covering, type to change the color of obs, color)
+  int totalLanes = int(height/grid +1);
+  lanes = new Lane[totalLanes];
   lanes[0] = new Lane(0, 4, CAR);
   //logs
   lanes[1] = new Lane(1,LOG, 3,1,175,3,LOG);
@@ -129,6 +148,8 @@ void loadLanesRound2(){
   Lane(index, number of obstacles covering, type to change the color of obs, color)
   */
   //Passed in log this time to match the color of the road
+  int totalLanes = int(height/grid +1);
+  lanes = new Lane[totalLanes];
   lanes[0] = new Lane(0, 4, LOG);
   lanes[1] = new Lane(1,CAR, 3,1,175,3,CAR);
   lanes[2] = new Lane(2,CAR, 4,1,200,-3,CAR);
